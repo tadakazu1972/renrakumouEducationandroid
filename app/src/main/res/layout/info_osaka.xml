@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/infoOsaka"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■おおさか防災ネット"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.osaka-bousai.net/pref/index.html"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■大阪市防災アプリ"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <Button
+        android:id="@+id/btnOsakaBousaiApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="大阪市防災アプリ"
+        android:textSize="18sp"/>
+</LinearLayout>

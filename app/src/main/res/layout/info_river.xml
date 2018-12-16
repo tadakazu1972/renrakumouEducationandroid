@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/infoRiver"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp">
+    <TextView
+        android:id="@+id/lblInfoRiver1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■国交省　川の防災情報"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoRiver2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.river.go.jp/kawabou/ipRadar.do?areaCd=86&amp;prefCd=&amp;townCd=&amp;gamenId=01-0706&amp;fldCtlParty=no"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoRiver3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■大阪府　河川情報"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoRiver4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.osaka-kasen-portal.net/suibou/index.html"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoRiver5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■気象庁　洪水予報"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoRiver6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.jma.go.jp/jp/flood/"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+</LinearLayout>

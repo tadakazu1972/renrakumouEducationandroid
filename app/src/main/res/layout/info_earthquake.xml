@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/infoEarthquake"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp">
+    <TextView
+        android:id="@+id/lblInfoEarthquake1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■震度情報（気象庁）"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoEarthquake2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.jma.go.jp/jp/quake/"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+</LinearLayout>

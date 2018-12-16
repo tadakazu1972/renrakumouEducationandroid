@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/infoWeather"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp">
+    <TextView
+        android:id="@+id/lblInfoWeather1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■気象庁"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoWeather2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.jma.go.jp/jma/index.html"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoWeather3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■建設局　降雨情報"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoWeather4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.ame.city.osaka.lg.jp/pweb/"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoWeather5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="■気象庁　潮位情報"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/lblInfoWeather6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.data.jma.go.jp/gmd/kaiyou/db/tide/suisan/suisan.php?stn=OS"
+        android:textColorLink="#1111ff"
+        android:textSize="20sp"
+        android:autoLink="web"
+        android:layout_marginBottom="20dp"/>
+
+</LinearLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+              android:id="@+id/guide22"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="２　連絡網データ作成(CSVファイル読込)"
+            android:textColor="#111111"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide221"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide222"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/guide222"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide223"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/guide223"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide224"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:src="@drawable/guide224"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide225"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/guide225"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide226"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/guide226"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide227"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:src="@drawable/guide227"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide228"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guide229"
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</ScrollView>
