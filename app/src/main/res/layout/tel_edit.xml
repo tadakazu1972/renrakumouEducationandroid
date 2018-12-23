@@ -31,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="■○号"
+            android:text="■校種"
             android:textColor="#111111"
             android:textSize="20sp"
             android:layout_marginBottom="20dp"/>
@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="■担当"
+            android:text="■ブロック"
             android:textColor="#111111"
             android:textSize="20sp"
             android:layout_marginBottom="20dp"/>
@@ -71,7 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=""
+            android:text="■区名"
             android:textColor="#111111"
             android:textSize="20sp"
             android:layout_marginBottom="20dp"/>
@@ -80,6 +80,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:entries="@array/firestation0"
             android:layout_marginBottom="20dp"/>
     </LinearLayout>
     <LinearLayout
@@ -90,16 +91,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="■参集場所"
+            android:text="■学校名"
             android:textColor="#111111"
             android:textSize="20sp"
             android:layout_marginBottom="20dp"/>
-        <Spinner
+        <EditText
             android:id="@+id/editKinmu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:entries="@array/kinmu"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:hint="学校名を入力してください"/>
     </LinearLayout>
 </LinearLayout>

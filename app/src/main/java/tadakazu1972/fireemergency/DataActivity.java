@@ -16,9 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -93,14 +91,14 @@ public class DataActivity extends AppCompatActivity {
         db = mDBHelper.getWritableDatabase(mKey);
         //データまとめて削除用ArrayList初期化
         deleteArray = new ArrayList<String>();
-        //連絡網データ確認ボタン
+        //連絡網データ一覧ボタン
         mView.findViewById(R.id.btnTel).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 showTel();
             }
         });
-        //連絡網データ入力ボタン
+        //連絡網データ新規ボタン
         mView.findViewById(R.id.btnTelEdit).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -176,7 +174,7 @@ public class DataActivity extends AppCompatActivity {
         });
     }
 
-    //連絡網データ表示
+    //一覧ボタン
     private void showTel(){
         //データ準備
         String order;
@@ -216,7 +214,72 @@ public class DataActivity extends AppCompatActivity {
         builder.show();
     }
 
-    //連絡網データ表示　修正用
+    //新規ボタン
+    private void showEditTel(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("新規データ入力");
+        //カスタムビュー設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.tel_edit, (ViewGroup)findViewById(R.id.telEdit));
+        //データ取得準備
+        final EditText editName = (EditText)layout.findViewById(R.id.editName);
+        final EditText editTel  = (EditText)layout.findViewById(R.id.editTel);
+        final EditText editMail = (EditText)layout.findViewById(R.id.editMail);
+        final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
+        final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
+        final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
+        /*
+        //親所属スピナー選択時の処理
+        editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                //親所属スピナーの選択した位置をint取得
+                int i = parent.getSelectedItemPosition();
+                //Toast.makeText(mActivity, String.valueOf(i)+"番目を選択", Toast.LENGTH_SHORT).show();
+                //取得したintを配列リソース名に変換し、配列リソースIDを取得（なぜか日本語ではエラーが出るのでアルファベットと数字で対応））
+                mSelected = "firestation"+ String.valueOf(i);
+                int resourceId = getResources().getIdentifier(mSelected, "array", getPackageName());
+                //Toast.makeText(mActivity, "resourceID="+String.valueOf(resourceId), Toast.LENGTH_SHORT).show();
+                //取得した配列リソースIDを文字列配列に格納
+                mArray = getResources().getStringArray(resourceId);
+                //配列リソースIDから取得した文字列配列をアダプタに入れる
+                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item);
+                for (String aMArray : mArray) {
+                    mAdapter.add(aMArray);
+                }
+                mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //アダプタを子スピナーにセット
+                editSyozoku2.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+                //nothing to do
+            }
+        });*/
+        //final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
+        final EditText editKinmu = (EditText)layout.findViewById(R.id.editKinmu);
+        builder.setView(layout);
+        builder.setPositiveButton("登録", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                String name = editName.getText().toString();
+                String tel  = editTel.getText().toString();
+                String mail = editMail.getText().toString();
+                String kubun = (String)editKubun.getSelectedItem();
+                String syozoku0 = (String)editSyozoku.getSelectedItem();
+                String syozoku = (String)editSyozoku2.getSelectedItem();
+                String kinmu = editKinmu.getText().toString();
+                mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku0, syozoku, kinmu);
+            }
+        });
+        builder.setNegativeButton("キャンセル", null);
+        builder.setCancelable(true);
+        builder.create();
+        builder.show();
+    }
+
+    //修正ボタン
     private void showTel2(){
         //データ準備
         String order;
@@ -259,7 +322,7 @@ public class DataActivity extends AppCompatActivity {
         mDialogShowTel2 = builder.show(); //このやり方は知らなかった
     }
 
-    //連絡網データ表示　削除用
+    //削除ボタン
     private void showTel3(){
         //データ準備
         final String order = "select * from records order by _id";
@@ -344,68 +407,6 @@ public class DataActivity extends AppCompatActivity {
         mDialogShowTel2 = builder.show(); //このやり方は知らなかった
     }
 
-    //連絡網データ入力
-    private void showEditTel(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("新規データ入力");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.tel_edit, (ViewGroup)findViewById(R.id.telEdit));
-        //データ取得準備
-        final EditText editName = (EditText)layout.findViewById(R.id.editName);
-        final EditText editTel  = (EditText)layout.findViewById(R.id.editTel);
-        final EditText editMail = (EditText)layout.findViewById(R.id.editMail);
-        final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
-        final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
-        final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
-        //親所属スピナー選択時の処理
-        editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                //親所属スピナーの選択した位置をint取得
-                int i = parent.getSelectedItemPosition();
-                //Toast.makeText(mActivity, String.valueOf(i)+"番目を選択", Toast.LENGTH_SHORT).show();
-                //取得したintを配列リソース名に変換し、配列リソースIDを取得（なぜか日本語ではエラーが出るのでアルファベットと数字で対応））
-                mSelected = "firestation"+ String.valueOf(i);
-                int resourceId = getResources().getIdentifier(mSelected, "array", getPackageName());
-                //Toast.makeText(mActivity, "resourceID="+String.valueOf(resourceId), Toast.LENGTH_SHORT).show();
-                //取得した配列リソースIDを文字列配列に格納
-                mArray = getResources().getStringArray(resourceId);
-                //配列リソースIDから取得した文字列配列をアダプタに入れる
-                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item);
-                for (String aMArray : mArray) {
-                    mAdapter.add(aMArray);
-                }
-                mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                //アダプタを子スピナーにセット
-                editSyozoku2.setAdapter(mAdapter);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent){
-                //nothing to do
-            }
-        });
-        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
-        builder.setView(layout);
-        builder.setPositiveButton("登録", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                String name = editName.getText().toString();
-                String tel  = editTel.getText().toString();
-                String mail = editMail.getText().toString();
-                String kubun = (String)editKubun.getSelectedItem();
-                String syozoku0 = (String)editSyozoku.getSelectedItem();
-                String syozoku = (String)editSyozoku2.getSelectedItem();
-                String kinmu = (String)editKinmu.getSelectedItem();
-                mActivity.mDBHelper.insert(db, name, tel, mail, kubun, syozoku0, syozoku, kinmu);
-            }
-        });
-        builder.setNegativeButton("キャンセル", null);
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
 
     //連絡網データ修正
     private void showUpdateTel(String _id, String _name, String _tel, String _mail, String _kubun, String _syozoku0, String _syozoku, String _kinmu){
@@ -422,7 +423,7 @@ public class DataActivity extends AppCompatActivity {
         final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
         final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
         final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
-        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
+        final EditText editKinmu = (EditText)layout.findViewById(R.id.editKinmu);
         //送られてきたデータをはめこむ
         editName.setText(_name);
         editTel.setText(_tel);
@@ -586,7 +587,7 @@ public class DataActivity extends AppCompatActivity {
                 String kubun = (String)editKubun.getSelectedItem();
                 String syozoku0 = (String)editSyozoku.getSelectedItem();
                 String syozoku = (String)editSyozoku2.getSelectedItem();
-                String kinmu = (String)editKinmu.getSelectedItem();
+                String kinmu = (String)editKinmu.getText().toString();
                 mActivity.mDBHelper.update(db, id, name, tel, mail, kubun, syozoku0, syozoku, kinmu);
                 Toast.makeText(mActivity, "データを修正しました。", Toast.LENGTH_SHORT).show();
                 //修正結果を見せるため再度呼び出し

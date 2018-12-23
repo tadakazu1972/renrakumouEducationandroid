@@ -8,14 +8,10 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -53,7 +49,7 @@ public class EarthquakeActivity extends AppCompatActivity {
     private Spinner editKubun = null;
     private Spinner editSyozoku = null;
     private Spinner editSyozoku2 = null;
-    private Spinner editKinmu = null;
+    //private Spinner editKinmu = null;
 
     @Override
     protected void onCreate(Bundle savedInstaceState){
@@ -95,7 +91,9 @@ public class EarthquakeActivity extends AppCompatActivity {
         editKubun = findViewById(R.id.editKubun);
         editSyozoku = findViewById(R.id.editSyozoku);
         editSyozoku2 = findViewById(R.id.editSyozoku2);
-        editKinmu = findViewById(R.id.editKinmu);
+        //editKinmu = findViewById(R.id.editKinmu);
+
+        /*  連動させないから不必要
         //親所属スピナー選択時の処理
         editSyozoku.setOnItemSelectedListener(new OnItemSelectedListener(){
             @Override
@@ -123,6 +121,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 //nothing to do
             }
         });
+        */
 
         //データ操作ボタン
         mView.findViewById(R.id.btnData).setOnClickListener(new OnClickListener(){
@@ -141,75 +140,10 @@ public class EarthquakeActivity extends AppCompatActivity {
                 resKubun = (String)editKubun.getSelectedItem();
                 resSyozoku0 = (String)editSyozoku.getSelectedItem();
                 resSyozoku = (String)editSyozoku2.getSelectedItem();
-                resKinmu = (String)editKinmu.getSelectedItem();
+                //resKinmu = (String)editKinmu.getSelectedItem();
                 showTelResult(resKubun, resSyozoku0, resSyozoku, resKinmu);
             }
         });
-    }
-
-    private void showTel(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("連絡網");
-        //カスタムビュー設定
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.tel_show2, (ViewGroup)findViewById(R.id.telShow2));
-        //全件表示ボタン設定
-        final Button btnAll = (Button)layout.findViewById(R.id.btnTel);
-        btnAll.setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v){
-                showTelAll();
-            }
-        });
-        //検索条件取得準備
-        final Spinner  editKubun = (Spinner)layout.findViewById(R.id.editKubun);
-        final Spinner  editSyozoku = (Spinner)layout.findViewById(R.id.editSyozoku);
-        final Spinner  editSyozoku2 = (Spinner)layout.findViewById(R.id.editSyozoku2);
-        final Spinner  editKinmu = (Spinner)layout.findViewById(R.id.editKinmu);
-        //親所属スピナー選択時の処理
-        editSyozoku.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                //親所属スピナーの選択した位置をint取得
-                int i = parent.getSelectedItemPosition();
-                //Toast.makeText(mActivity, String.valueOf(i)+"番目を選択", Toast.LENGTH_SHORT).show();
-                //取得したintを配列リソース名に変換し、配列リソースIDを取得（なぜか日本語ではエラーが出るのでアルファベットと数字で対応））
-                mSelected = "firestationB"+ String.valueOf(i);
-                int resourceId = getResources().getIdentifier(mSelected, "array", getPackageName());
-                //Toast.makeText(mActivity, "resourceID="+String.valueOf(resourceId), Toast.LENGTH_SHORT).show();
-                //取得した配列リソースIDを文字列配列に格納
-                mArray = getResources().getStringArray(resourceId);
-                //配列リソースIDから取得した文字列配列をアダプタに入れる
-                ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item);
-                for (String aMArray : mArray) {
-                    mAdapter.add(aMArray);
-                }
-                mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                //アダプタを子スピナーにセット
-                editSyozoku2.setAdapter(mAdapter);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent){
-                //nothing to do
-            }
-        });
-        builder.setView(layout);
-        builder.setPositiveButton("検索", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //スピナーをさわっていたら取得
-                resKubun = (String)editKubun.getSelectedItem();
-                resSyozoku0 = (String)editSyozoku.getSelectedItem();
-                resSyozoku = (String)editSyozoku2.getSelectedItem();
-                resKinmu = (String)editKinmu.getSelectedItem();
-                showTelResult(resKubun, resSyozoku0, resSyozoku, resKinmu);
-            }
-        });
-        builder.setNegativeButton("キャンセル", null);
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
     }
 
     private void showTelAll(){
@@ -257,11 +191,11 @@ public class EarthquakeActivity extends AppCompatActivity {
                 for (int i=0; i < mailArray.size(); i++){
                     sendMails[i] = mailArray.get(i);
                 }
-                //メール立ち上げ  注意！宛先はICT戦略室組織メール、個人アドレスはBCCで！
+                //メール立ち上げ  注意！宛先は組織メール、個人アドレスはBCCで！
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ba0034@city.osaka.lg.jp"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ua0001@city.osaka.lg.jp","ua0013@city.osaka.lg.jp"});
                 intent.putExtra(Intent.EXTRA_BCC, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
@@ -312,7 +246,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         if (_kubun.equals("すべて")){
             kubun = "is not null";
         } else {
-            kubun = ">='" + _kubun + "'";
+            kubun = "='" + _kubun + "'";
         }
         String syozoku0;
         if (_syozoku0.equals("すべて")){
@@ -378,7 +312,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ba0034@city.osaka.lg.jp"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ua0001@city.osaka.lg.jp","ua0013@city.osaka.lg.jp"});
                 intent.putExtra(Intent.EXTRA_BCC, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
@@ -423,7 +357,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         final String kubun2 = _kubun;
         //ここからSQL文作成
         String kubun;
-            kubun = ">='" + _kubun + "'";
+            kubun = "is not null";
         String syozoku0;
             syozoku0 = "is not null";
         String syozoku;
@@ -476,7 +410,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ba0034@city.osaka.lg.jp"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ua0001@city.osaka.lg.jp","ua0013@city.osaka.lg.jp"});
                 intent.putExtra(Intent.EXTRA_BCC, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");

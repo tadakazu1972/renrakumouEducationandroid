@@ -1,125 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="firestation">
-        <item>１B</item>
-        <item>２B</item>
-        <item>３B</item>
-        <item>４B</item>
-        <item>５B</item>
-        <item>６B</item>
-        <item>７B</item>
-        <item>８B</item>
-    </string-array>
-    <string-array name="firestation0">
-        <item>北区</item>
-        <item>都島区</item>
-        <item>福島区</item>
-    </string-array>
-    <string-array name="firestation1">
-        <item>此花区</item>
-        <item>中央区</item>
-        <item>西区</item>
-    </string-array>
-    <string-array name="firestation2">
-        <item>港区</item>
-        <item>大正区</item>
-        <item>浪速区</item>
-    </string-array>
     <string-array name="kubun">
         <item>幼</item>
         <item>小</item>
         <item>中</item>
         <item>高</item>
     </string-array>
+    <string-array name="firestation">
+        <item>1B</item>
+        <item>2B</item>
+        <item>3B</item>
+        <item>4B</item>
+        <item>5B</item>
+        <item>6B</item>
+        <item>7B</item>
+        <item>8B</item>
+    </string-array>
+    <string-array name="firestation0">
+        <item>北区</item>
+        <item>都島区</item>
+        <item>福島区</item>
+        <item>此花区</item>
+        <item>中央区</item>
+        <item>西区</item>
+        <item>港区</item>
+        <item>大正区</item>
+        <item>天王寺区</item>
+        <item>浪速区</item>
+        <item>西淀川区</item>
+        <item>淀川区</item>
+        <item>東淀川区</item>
+        <item>東成区</item>
+        <item>生野区</item>
+        <item>旭区</item>
+        <item>城東区</item>
+        <item>鶴見区</item>
+        <item>住之江区</item>
+        <item>阿倍野区</item>
+        <item>住吉区</item>
+        <item>東住吉区</item>
+        <item>平野区</item>
+        <item>西成区</item>
+    </string-array>
     <string-array name="kinmu">
         <item>本庁舎</item>
-        <item>阿波座センタービル</item>
-        <item>災害本部</item>
-        <item>阿倍野防災センター</item>
-        <item>北区役所</item>
-        <item>都島区役所</item>
-        <item>福島区役所</item>
-        <item>此花区役所</item>
-        <item>中央区役所</item>
-        <item>西区役所</item>
-        <item>港区役所</item>
-        <item>大正区役所</item>
-        <item>天王寺区役所</item>
-        <item>浪速区役所</item>
-        <item>西淀川区役所</item>
-        <item>淀川区役所</item>
-        <item>東淀川区役所</item>
-        <item>東成区役所</item>
-        <item>生野区役所</item>
-        <item>旭区役所</item>
-        <item>城東区役所</item>
-        <item>鶴見区役所</item>
-        <item>住之江区役所</item>
-        <item>阿倍野区役所</item>
-        <item>住吉区役所</item>
-        <item>東住吉区役所</item>
-        <item>平野区役所</item>
-        <item>西成区役所</item>
-    </string-array>
-    <string-array name="firestationB">
-        <item>すべて</item>
-        <item>企画担当</item>
-        <item>活用推進担当</item>
-        <item>システムマネジメント担当</item>
-    </string-array>
-    <string-array name="firestationB0">
-        <item>すべて</item>
-    </string-array>
-    <string-array name="firestationB1">
-        <item>すべて</item>
-        <item>企画グループ</item>
-        <item>支援グループ</item>
-    </string-array>
-    <string-array name="firestationB2">
-        <item>すべて</item>
-        <item>活用推進グループ</item>
-        <item>基盤グループ</item>
-    </string-array>
-    <string-array name="firestationB3">
-        <item>すべて</item>
-        <item>システムマネジメント担当</item>
     </string-array>
     <string-array name="kubunB">
         <item>すべて</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>幼</item>
+        <item>小</item>
+        <item>中</item>
+        <item>高</item>
+    </string-array>
+    <string-array name="firestationB">
+        <item>すべて</item>
+        <item>1B</item>
+        <item>2B</item>
+        <item>3B</item>
+        <item>4B</item>
+        <item>5B</item>
+        <item>6B</item>
+        <item>7B</item>
+        <item>8B</item>
+    </string-array>
+    <string-array name="firestationB0">
+        <item>すべて</item>
+        <item>北区</item>
+        <item>都島区</item>
+        <item>福島区</item>
+        <item>此花区</item>
+        <item>中央区</item>
+        <item>西区</item>
+        <item>港区</item>
+        <item>大正区</item>
+        <item>天王寺区</item>
+        <item>浪速区</item>
+        <item>西淀川区</item>
+        <item>淀川区</item>
+        <item>東淀川区</item>
+        <item>東成区</item>
+        <item>生野区</item>
+        <item>旭区</item>
+        <item>城東区</item>
+        <item>鶴見区</item>
+        <item>住之江区</item>
+        <item>阿倍野区</item>
+        <item>住吉区</item>
+        <item>東住吉区</item>
+        <item>平野区</item>
+        <item>西成区</item>
     </string-array>
     <string-array name="kinmuB">
         <item>すべて</item>
-        <item>本庁舎</item>
-        <item>阿波座センタービル</item>
-        <item>災害本部</item>
-        <item>阿倍野防災センター</item>
-        <item>北区役所</item>
-        <item>都島区役所</item>
-        <item>福島区役所</item>
-        <item>此花区役所</item>
-        <item>中央区役所</item>
-        <item>西区役所</item>
-        <item>港区役所</item>
-        <item>大正区役所</item>
-        <item>天王寺区役所</item>
-        <item>浪速区役所</item>
-        <item>西淀川区役所</item>
-        <item>淀川区役所</item>
-        <item>東淀川区役所</item>
-        <item>東成区役所</item>
-        <item>生野区役所</item>
-        <item>旭区役所</item>
-        <item>城東区役所</item>
-        <item>鶴見区役所</item>
-        <item>住之江区役所</item>
-        <item>阿倍野区役所</item>
-        <item>住吉区役所</item>
-        <item>東住吉区役所</item>
-        <item>平野区役所</item>
-        <item>西成区役所</item>
     </string-array>
 </resources>
