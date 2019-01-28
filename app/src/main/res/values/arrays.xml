@@ -90,6 +90,13 @@
         <item>平野区</item>
         <item>西成区</item>
     </string-array>
+    <string-array name="fromSection">
+        <item>総務課</item>
+        <item>教育活動支援担当</item>
+        <item>初等教育担当</item>
+        <item>中学校教育担当</item>
+        <item>高等学校教育担当</item>
+    </string-array>
     <string-array name="kinmuB">
         <item>すべて</item>
     </string-array>
