@@ -49,7 +49,10 @@ public class EarthquakeActivity extends AppCompatActivity {
     private Spinner editKubun = null;
     private Spinner editSyozoku = null;
     private Spinner editSyozoku2 = null;
-    //private Spinner editKinmu = null;
+    private Spinner editAddress = null;
+    //メール保存宛先アドレス記憶用
+    private String toSection = null; //担当名
+    protected String toAddress = null;
 
     @Override
     protected void onCreate(Bundle savedInstaceState){
@@ -61,6 +64,9 @@ public class EarthquakeActivity extends AppCompatActivity {
 
         //ボタン設定
         initButtons();
+
+        //メール送信元アドレス読み込み
+        loadFromAddress();
 
         //連絡網データ作成
         mListView = new ListView(this);
@@ -91,6 +97,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         editKubun = findViewById(R.id.editKubun);
         editSyozoku = findViewById(R.id.editSyozoku);
         editSyozoku2 = findViewById(R.id.editSyozoku2);
+        editAddress = findViewById(R.id.editAddress);
         //editKinmu = findViewById(R.id.editKinmu);
 
         /*  連動させないから不必要
@@ -140,11 +147,18 @@ public class EarthquakeActivity extends AppCompatActivity {
                 resKubun = (String)editKubun.getSelectedItem();
                 resSyozoku0 = (String)editSyozoku.getSelectedItem();
                 resSyozoku = (String)editSyozoku2.getSelectedItem();
-                //resKinmu = (String)editKinmu.getSelectedItem();
-                showTelResult(resKubun, resSyozoku0, resSyozoku, resKinmu);
+                toSection = (String)editAddress.getSelectedItem();
+                showTelResult(resKubun, resSyozoku0, resSyozoku, resKinmu, toSection);
             }
         });
     }
+
+    //送信元メールアドレス読み込み
+    private void loadFromAddress(){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        toAddress = sp.getString("toAddress","ua0001@city.osaka.lg.jp"); // 第２引数はkeyが存在しない時に返す初期値
+    }
+
 
     private void showTelAll(){
         //データ準備
@@ -233,7 +247,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void showTelResult(String _kubun, String _syozoku0, String _syozoku, String _kinmu){
+    private void showTelResult(String _kubun, String _syozoku0, String _syozoku, String _kinmu, String _toSection){
         //データ準備
         mailArray.clear(); //前回の残りを消去
         //再帰するときにfinalで使用するため別変数にして保存
@@ -241,6 +255,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         final String syozoku02 = _syozoku0;
         final String syozoku2 = _syozoku;
         final String kinmu2 = _kinmu;
+        final String toSection2 = _toSection;
         //ここからSQL文作成
         String kubun;
         if (_kubun.equals("すべて")){
@@ -308,11 +323,34 @@ public class EarthquakeActivity extends AppCompatActivity {
                 for (int i=0; i < mailArray.size(); i++){
                     sendMails[i] = mailArray.get(i);
                 }
+                //第三段階　担当によって宛先メールアドレス設定
+                final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
+                String[] toAddress = new String[]{"ua0001@city.osaka.lg.jp"}; //1つでもString[]の配列でないと機能しない
+                if (toSection2.equals("総務課")) {
+                    toAddress[0] = "ua0001@city.osaka.lg.jp";
+                    sp.edit().putString("toAddress", "ua0001@city.osaka.lg.jp").apply();
+                }
+                if (toSection2.equals("教育活動支援担当")) {
+                    toAddress[0] = "ua0013@city.osaka.lg.jp";
+                    sp.edit().putString("toAddress", "ua0013@city.osaka.lg.jp").apply();
+                }
+                if (toSection2.equals("初等教育担当")) {
+                    toAddress[0] = "ua0014@city.osaka.lg.jp";
+                    sp.edit().putString("toAddress", "ua0014@city.osaka.lg.jp").apply();
+                }
+                if (toSection2.equals("中学校教育担当")) {
+                    toAddress[0] = "ua0015@city.osaka.lg.jp";
+                    sp.edit().putString("toAddress", "ua0015@city.osaka.lg.jp").apply();
+                }
+                if (toSection2.equals("高等学校教育担当")) {
+                    toAddress[0] = "ua0017@city.osaka.lg.jp";
+                    sp.edit().putString("toAddress", "ua0017@city.osaka.lg.jp").apply();
+                }
                 //メール立ち上げ  注意！宛先はICT戦略室組織メール、個人アドレスはBCCで！
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ua0001@city.osaka.lg.jp","ua0013@city.osaka.lg.jp"});
+                intent.putExtra(Intent.EXTRA_EMAIL, toAddress);
                 intent.putExtra(Intent.EXTRA_BCC, sendMails);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
                 intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
@@ -335,105 +373,7 @@ public class EarthquakeActivity extends AppCompatActivity {
                     }
                 }
                 //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
-                showTelResult(kubun2, syozoku02, syozoku2, kinmu2);
-            }
-        });
-        builder.setNegativeButton("戻る", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                mailArray.clear(); //きちんと後片付け
-                mAdapter2 = null;
-            }
-        });
-        builder.setCancelable(true);
-        builder.create();
-        builder.show();
-    }
-
-    private void showTelResult2(String _kubun){
-        //データ準備
-        mailArray.clear(); //前回の残りを消去
-        //再帰するときにfinalで使用するため別変数にして保存
-        final String kubun2 = _kubun;
-        //ここからSQL文作成
-        String kubun;
-            kubun = "is not null";
-        String syozoku0;
-            syozoku0 = "is not null";
-        String syozoku;
-            syozoku = "is not null";
-        String kinmu;
-            kinmu = "is not null";
-        final String order = "select * from records where kubun " + kubun + " and syozoku0 " + syozoku0 + " and syozoku " + syozoku + " and kinmu " + kinmu + " order by _id";
-        final Cursor c = mActivity.db.rawQuery(order, null);
-        String[] from = {"name", "tel", "mail", "kubun", "syozoku0", "syozoku", "kinmu"};
-        int[] to = {R.id.record_name, R.id.record_tel, R.id.record_mail, R.id.record_kubun, R.id.record_syozoku0, R.id.record_syozoku, R.id.record_kinmu};
-        //初回のみ起動。そうしないと、すべて選択した後の２回目がまたnewされて意味ない
-        if (mAdapter2 == null) {
-            mActivity.mAdapter2 = new CustomCursorAdapter(mActivity, R.layout.record_view2, c, from, to, 0);
-        }
-        mListView.setAdapter(mActivity.mAdapter2);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                //タップした位置のデータをチェック処理
-                mActivity.mAdapter2.clickData(position, view);
-            }
-        });
-        //ダイアログ生成
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("連絡網データ\n (メールはチェックしてから送信)");
-        ViewGroup parent = (ViewGroup)mListView.getParent();
-        if ( parent!=null) {
-            parent.removeView(mListView);
-        }
-        builder.setView(mListView);
-        builder.setPositiveButton("メール送信", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //第一段階　メール送信対象リストに格納
-                //CustomCursorAdapterのメンバ変数であるitemCheckedを見に行く
-                c.moveToFirst(); //カーソルを先頭に
-                for (int i=0; i < mAdapter2.itemChecked.size(); i++){
-                    //チェックされていたら対応するカーソルのmailアドレス文字列をメール送信対象文字列に格納
-                    if (mAdapter2.itemChecked.get(i)){
-                        mailArray.add(c.getString(c.getColumnIndex("mail")));
-                    }
-                    c.moveToNext();
-                }
-                //第二段階　メールアプリのsendに渡す文字列にArrayListに格納した各アドレスを格納
-                final String[] sendMails = new String[mailArray.size()];
-                for (int i=0; i < mailArray.size(); i++){
-                    sendMails[i] = mailArray.get(i);
-                }
-                //メール立ち上げ  注意！宛先はICT戦略室組織メール、個人アドレスはBCCで！
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ua0001@city.osaka.lg.jp","ua0013@city.osaka.lg.jp"});
-                intent.putExtra(Intent.EXTRA_BCC, sendMails);
-                intent.putExtra(Intent.EXTRA_SUBJECT, "参集アプリ　一斉送信メール");
-                intent.putExtra(Intent.EXTRA_TEXT, "緊急連絡");
-                try {
-                    startActivity(Intent.createChooser(intent, "メールアプリを選択"));
-                } catch (android.content.ActivityNotFoundException ex){
-                    Toast.makeText(mActivity, "メールアプリが見つかりません", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        builder.setNeutralButton("すべて選択/解除", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                c.moveToFirst();
-                for (int i=0; i < mAdapter2.itemChecked.size(); i++){
-                    if (!mAdapter2.itemChecked.get(i)) {
-                        mActivity.mAdapter2.itemChecked.set(i, true);
-                    } else {
-                        mActivity.mAdapter2.itemChecked.set(i, false);
-                    }
-                }
-                //再帰しないとsetNeutralButtonを押すとダイアログが自動で消えてしまって意味がないので・・・
-                showTelResult2(kubun2);
+                showTelResult(kubun2, syozoku02, syozoku2, kinmu2, toSection2);
             }
         });
         builder.setNegativeButton("戻る", new DialogInterface.OnClickListener(){
