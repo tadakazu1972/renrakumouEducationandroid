@@ -442,10 +442,6 @@ public class DataActivity extends AppCompatActivity {
         if (_syozoku0.equals("2B")){ _syozokuParentPos=1; }
         if (_syozoku0.equals("3B")){ _syozokuParentPos=2; }
         if (_syozoku0.equals("4B")){ _syozokuParentPos=3; }
-        if (_syozoku0.equals("5B")){ _syozokuParentPos=4; }
-        if (_syozoku0.equals("6B")){ _syozokuParentPos=5; }
-        if (_syozoku0.equals("7B")){ _syozokuParentPos=6; }
-        if (_syozoku0.equals("8B")){ _syozokuParentPos=7; }
         editSyozoku.setSelection(_syozokuParentPos);
         //区名のスピナー初期設定
         _syozokuPos=0;

@@ -334,13 +334,9 @@ public class EarthquakeActivity extends AppCompatActivity {
                     toAddress[0] = "ua0013@city.osaka.lg.jp";
                     sp.edit().putString("toAddress", "ua0013@city.osaka.lg.jp").apply();
                 }
-                if (toSection2.equals("初等教育担当")) {
+                if (toSection2.equals("初等・中学校教育担当")) {
                     toAddress[0] = "ua0014@city.osaka.lg.jp";
                     sp.edit().putString("toAddress", "ua0014@city.osaka.lg.jp").apply();
-                }
-                if (toSection2.equals("中学校教育担当")) {
-                    toAddress[0] = "ua0015@city.osaka.lg.jp";
-                    sp.edit().putString("toAddress", "ua0015@city.osaka.lg.jp").apply();
                 }
                 if (toSection2.equals("高等学校教育担当")) {
                     toAddress[0] = "ua0017@city.osaka.lg.jp";

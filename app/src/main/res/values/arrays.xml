@@ -11,10 +11,6 @@
         <item>2B</item>
         <item>3B</item>
         <item>4B</item>
-        <item>5B</item>
-        <item>6B</item>
-        <item>7B</item>
-        <item>8B</item>
     </string-array>
     <string-array name="firestation0">
         <item>北区</item>
@@ -58,10 +54,6 @@
         <item>2B</item>
         <item>3B</item>
         <item>4B</item>
-        <item>5B</item>
-        <item>6B</item>
-        <item>7B</item>
-        <item>8B</item>
     </string-array>
     <string-array name="firestationB0">
         <item>すべて</item>
@@ -93,8 +85,7 @@
     <string-array name="fromSection">
         <item>総務課</item>
         <item>教育活動支援担当</item>
-        <item>初等教育担当</item>
-        <item>中学校教育担当</item>
+        <item>初等・中学校教育担当</item>
         <item>高等学校教育担当</item>
     </string-array>
     <string-array name="kinmuB">
